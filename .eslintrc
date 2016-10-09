@@ -6,6 +6,16 @@
     "mocha": true
   },
   "rules": {
-    "import/prefer-default-export": 0
+    "indent": [2, 4, {"SwitchCase": 1}],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+  },
+  "plugins": [
+    "react", "import"
+  ],
+  "settings": {
+    "import/parser": "babel-eslint",
+    "import/resolve": {
+      "moduleDirectory": ["node_modules", "src"]
+    }
   }
 }

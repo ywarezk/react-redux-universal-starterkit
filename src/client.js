@@ -7,15 +7,7 @@
  * @copyright: Nerdeez
  */
 
-export class Pokemon{
-    constructor(name = 'Pikachu'){
-        this.name = name;
-    }
+import React from 'react';
+import ReactDom from 'react-dom';
 
-    sayHello(){
-        console.log(this.name + ' said hello');
-    }
-}
-
-const pikachu = new Pokemon();
-pikachu.sayHello();
+ReactDom.render(<h1>Hello World</h1>, document.getElementById('nz-content'));
