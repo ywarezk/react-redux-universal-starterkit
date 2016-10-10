@@ -9,6 +9,14 @@
 
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+
+//isomorphic tools
+var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
+var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tools.config.js'));
+if (process.env.NODE_ENV !== 'production'){
+    webpackIsomorphicToolsPlugin = webpackIsomorphicToolsPlugin.development();
+}
+
 module.exports = {
     entry: {
         main: './src/client.js'
@@ -31,6 +39,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/index.html'
-        })
+        }),
+        webpackIsomorphicToolsPlugin
     ]
 }

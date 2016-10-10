@@ -9,5 +9,6 @@
 
 import React from 'react';
 import ReactDom from 'react-dom';
+import Router from './Router';
 
-ReactDom.render(<h1>Hello World</h1>, document.getElementById('nz-content'));
+ReactDom.render(<Router />, document.getElementById('nz-content'));
