@@ -9,6 +9,7 @@
 
 import React from 'react';
 import ReactDom from 'react-dom';
-import Router from './Router';
+import { Router, browserHistory } from 'react-router';
+import getRoutes from './routes';
 
-ReactDom.render(<Router />, document.getElementById('nz-content'));
+ReactDom.render(<Router history={browserHistory}>{getRoutes()}</Router>, document.getElementById('nz-content'));
