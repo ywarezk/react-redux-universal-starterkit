@@ -8,11 +8,17 @@
  */
 
 import React from 'react';
+import TodoList from '../../components/TodoList';
+import TodoForm from '../../components/TodoForm';
 
 export default class Home extends React.Component {
     render() {
         return (
-            <h1>Welcome to the homepage</h1>
+            <div>
+                <h1>Welcome to the homepage</h1>
+                <TodoForm />
+                <TodoList />
+            </div>
         );
     }
 }
