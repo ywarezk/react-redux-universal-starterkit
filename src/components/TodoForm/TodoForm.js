@@ -10,7 +10,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { addTodo } from '../redux/actions/todo';
+import { addTodo } from '../../redux/actions/todo';
 
 @connect(
     null,
