@@ -12,8 +12,9 @@ import ReactDom from 'react-dom';
 import { Router, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import getRoutes from './routes';
-import store from './redux/store/store';
+import nzCreateStore from './redux/store/store';
 
+const store = nzCreateStore();
 ReactDom.render(
     <Provider store={store}>
         <Router history={browserHistory}>{getRoutes()}</Router>

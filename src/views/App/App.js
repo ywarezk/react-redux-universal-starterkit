@@ -11,7 +11,6 @@
 import React, { PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { Link } from 'react-router';
-import Helmet from 'react-helmet';
 
 export default class App extends React.Component {
     static propTypes = {
@@ -19,31 +18,29 @@ export default class App extends React.Component {
     }
 
     render() {
-
-
         return (
             <div>
 
                 {/* begin head configuration */}
                 <Helmet
-                    titleTemplate="Nerdeez Starter Kit | %s"
-                    meta={
-                        [
-                            {
-                                name: "description",
-                                content:
-                                    `Do it yourself unopinionated starter kit for react redux.
-                                    The starter kit contains the following:
-                                    * Server Side Rendering - Universal app
-                                    * Karma
-                                    * Mocha
-                                    * Enzyme
-                                    * Chai
-                                    * React-Helmet
-                                    * React-Router`
-                            }
-                        ]
-                    }
+                  titleTemplate="Nerdeez Starter Kit | %s"
+                  meta={
+                      [
+                          {
+                              name: 'description',
+                              content:
+                                `Do it yourself unopinionated starter kit for react redux.
+                                The starter kit contains the following:
+                                * Server Side Rendering - Universal app
+                                * Karma
+                                * Mocha
+                                * Enzyme
+                                * Chai
+                                * React-Helmet
+                                * React-Router`,
+                          },
+                      ]
+                  }
                 />
                 {/* end head configuration */}
 

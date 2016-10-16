@@ -15,7 +15,7 @@ export default class About extends React.Component {
         return (
             <div>
                 <Helmet
-                    title="About Us"
+                  title="About Us"
                 />
                 <h1>
                     Welcome to the about page

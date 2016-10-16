@@ -8,16 +8,16 @@
  */
 
 import React from 'react';
-import TodoList from '../../components/TodoList';
-import TodoForm from '../../components/TodoForm';
 import Helmet from 'react-helmet';
+import TodoList from '../../components/TodoList/TodoList';
+import TodoForm from '../../components/TodoForm/TodoForm';
 
 export default class Home extends React.Component {
     render() {
         return (
             <div>
                 <Helmet
-                    title="Homepage"
+                  title="Homepage"
                 />
                 <h1>Welcome to the homepage</h1>
                 <TodoForm />

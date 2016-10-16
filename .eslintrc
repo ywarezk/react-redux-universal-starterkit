@@ -22,5 +22,8 @@
   "plugins": [
     "react", "import"
   ],
-  "parser": "babel-eslint"
+  "parser": "babel-eslint",
+  "globals": {
+    "__CLIENT__": true,
+  }
 }

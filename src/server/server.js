@@ -11,7 +11,7 @@
 
 import Express from 'express';
 import http from 'http';
-import store from '../redux/store/store';
+import nzCreateStore from '../redux/store/store';
 import { match } from 'react-router';
 import PrettyError from 'pretty-error';
 import { Router } from 'react-router';
@@ -35,6 +35,8 @@ app.use((req, res) => {
             location: req.originalUrl
         },
         (error, redirectLocation, renderProps) => {
+
+            const store = nzCreateStore();
 
             // if the route has a redirect
             if (redirectLocation) {
