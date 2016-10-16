@@ -8,6 +8,7 @@
  */
 
 //root path
+require('../server.babel');
 var path = require('path');
 var rootDir = path.resolve(__dirname, '..');
 
