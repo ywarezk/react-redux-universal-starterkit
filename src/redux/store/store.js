@@ -7,13 +7,19 @@
  * @copyright: Nerdeez Ltd
  */
 
-import { createStore } from 'redux';
-import todoReducer from '../reducers/todo';
+import { createStore, applyMiddleware } from 'redux';
+import { routerMiddleware } from 'react-router-redux';
+import reducer from '../reducers/reducers';
 
 
-export default function nzCreateStore() {
-    if (__CLIENT__) {
-        return createStore(todoReducer, null, window.__initialState);
+export default function nzCreateStore(history) {
+    const reduxRouterMiddleware = routerMiddleware(history);
+    if (typeof __CLIENT__ === 'undefined') {
+        return createStore(
+            reducer,
+            window.__initialState,
+            applyMiddleware([reduxRouterMiddleware])
+        );
     }
-    return createStore(todoReducer);
+    return createStore(reducer);
 }

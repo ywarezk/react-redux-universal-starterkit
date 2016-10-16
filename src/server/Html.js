@@ -9,6 +9,7 @@
 
 import React from 'react';
 import Helmet from 'react-helmet';
+import serialize from 'serialize-javascript';
 
 export default class Html extends React.Component{
     static propTypes = {
@@ -18,7 +19,7 @@ export default class Html extends React.Component{
     }
 
     render() {
-        const {component, assets} = this.props;
+        const {component, assets, store} = this.props;
         const head = Helmet.rewind();
         return (
             <html lang="en-us">

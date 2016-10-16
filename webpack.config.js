@@ -25,7 +25,7 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name]-[chunkhash].js',
         chunkFilename: '[name]-[chunkhash].js',
-        publicPath: '/'
+        publicPath: 'assets/'
     },
     module: {
         loaders: [

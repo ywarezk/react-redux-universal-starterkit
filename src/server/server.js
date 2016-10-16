@@ -9,6 +9,8 @@
  * @copyright: Nerdeez
  */
 
+import React from 'react';
+import { Provider } from 'react-redux';
 import Express from 'express';
 import http from 'http';
 import nzCreateStore from '../redux/store/store';
@@ -16,12 +18,25 @@ import { match } from 'react-router';
 import PrettyError from 'pretty-error';
 import { Router } from 'react-router';
 import getRoutes from '../routes';
-import ReactDom from 'react-dom';
+import ReactDOM from 'react-dom/server';
 import Html from './Html';
+import App from '../views/App/App';
+import createHistory from 'react-router/lib/createMemoryHistory';
+import { syncHistoryWithStore } from 'react-router-redux';
+
 
 const app = new Express();
 const server = new http.Server(app);
 const pretty = new PrettyError();
+
+// root dir
+var path = require('path');
+const rootDir = path.resolve(__dirname, '../../');
+
+/**
+ * serve the static files from the dist folder
+ */
+app.use('/assets', Express.static(path.join(rootDir, 'dist')));
 
 /**
  * Main function that renders our app in the
@@ -29,14 +44,19 @@ const pretty = new PrettyError();
  */
 app.use((req, res) => {
 
+    const memoryHistory = createHistory(req.originalUrl);
+    const store = nzCreateStore(memoryHistory);
+    const history = syncHistoryWithStore(memoryHistory, store);
+
     match(
         {
+            history: history,
             routes: getRoutes(),
             location: req.originalUrl
         },
         (error, redirectLocation, renderProps) => {
 
-            const store = nzCreateStore();
+
 
             // if the route has a redirect
             if (redirectLocation) {
@@ -61,11 +81,9 @@ app.use((req, res) => {
 
             // create our application
             if(renderProps){
-                const componentString = ReactDom.renderToString(
+                const componentString = ReactDOM.renderToString(
                     <Provider store={store}>
-                        <Router {...renderProps}>
-                            {getRoutes()}
-                        </Router>
+                        <App {...renderProps} />
                     </Provider>
                 );
 
@@ -75,7 +93,7 @@ app.use((req, res) => {
                     `<!DOCTYPE html>
                     `
                     +
-                    ReactDom.renderToString(<Html
+                    ReactDOM.renderToString(<Html
                         store={store}
                         component={componentString}
                         assets={webpackIsomorphicTools.assets()}
@@ -104,6 +122,9 @@ app.use((req, res) => {
 
 });
 
+/**
+ * create the server at port 3000
+ */
 server.listen(3000, (err) => {
     if (err) {
         console.error(err);
