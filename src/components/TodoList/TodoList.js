@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 
 @connect(
     state => ({
-        todos: state.todos,
+        todos: state.todoReducer.todos,
     })
 )
 export default class TodoList extends React.Component {

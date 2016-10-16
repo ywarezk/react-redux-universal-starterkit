@@ -7,19 +7,22 @@
  * @copyright: Nerdeez Ltd
  */
 
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
 import reducer from '../reducers/reducers';
 
 
 export default function nzCreateStore(history) {
     const reduxRouterMiddleware = routerMiddleware(history);
+    const middleware = [reduxRouterMiddleware];
+    const finalCreateStore = compose(
+        applyMiddleware(...middleware)
+    )(createStore);
     if (typeof __CLIENT__ === 'undefined') {
-        return createStore(
+        return finalCreateStore(
             reducer,
-            window.__initialState,
-            applyMiddleware([reduxRouterMiddleware])
+            window.__initialState
         );
     }
-    return createStore(reducer);
+    return finalCreateStore(reducer);
 }

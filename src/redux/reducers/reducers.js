@@ -13,5 +13,5 @@ import todoReducer from './todo';
 
 export default combineReducers({
     todoReducer,
-    routerReducer,
+    routing: routerReducer,
 });

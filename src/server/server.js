@@ -83,7 +83,9 @@ app.use((req, res) => {
             if(renderProps){
                 const componentString = ReactDOM.renderToString(
                     <Provider store={store}>
-                        <App {...renderProps} />
+                        <Router history={history} >
+                            {getRoutes()}
+                        </Router>
                     </Provider>
                 );
 
