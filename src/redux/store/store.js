@@ -10,4 +10,10 @@
 import { createStore } from 'redux';
 import todoReducer from '../reducers/todo';
 
-export default createStore(todoReducer);
+let store;
+if (__CLIENT__){
+    store = createStore(todoReducer, null, window.__initialState);
+} else {
+    store = createStore(todoReducer);
+}
+export default store;

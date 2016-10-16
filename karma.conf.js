@@ -7,7 +7,6 @@
  * @copyright: Nerdeez Ltd
  */
 
-var webpack = require('webpack');
 module.exports = function(config) {
     config.set({
         browsers: ['Chrome'],

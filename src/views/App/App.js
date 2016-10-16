@@ -11,6 +11,7 @@
 import React, { PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { Link } from 'react-router';
+import Helmet from 'react-helmet';
 
 export default class App extends React.Component {
     static propTypes = {
@@ -18,20 +19,33 @@ export default class App extends React.Component {
     }
 
     render() {
+
+
         return (
             <div>
 
-                {/* start head section configuration */}
+                {/* begin head configuration */}
                 <Helmet
-                  titleTemplate="%s | bugeez.io"
-                  meta={
-                      [
-                        { name: 'description', content: 'Bugeez dev team managment dashboard' },
-                        { charset: 'utf-8' },
-                      ]
-                  }
+                    titleTemplate="Nerdeez Starter Kit | %s"
+                    meta={
+                        [
+                            {
+                                name: "description",
+                                content:
+                                    `Do it yourself unopinionated starter kit for react redux.
+                                    The starter kit contains the following:
+                                    * Server Side Rendering - Universal app
+                                    * Karma
+                                    * Mocha
+                                    * Enzyme
+                                    * Chai
+                                    * React-Helmet
+                                    * React-Router`
+                            }
+                        ]
+                    }
                 />
-                {/* end head section configuration */}
+                {/* end head configuration */}
 
                 {/* begin header */}
                 <header>

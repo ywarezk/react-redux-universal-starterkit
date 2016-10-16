@@ -8,13 +8,19 @@
  */
 
 import React from 'react';
+import Helmet from 'react-helmet';
 
 export default class About extends React.Component {
     render() {
         return (
-            <h1>
-                Welcome to the about page
-            </h1>
+            <div>
+                <Helmet
+                    title="About Us"
+                />
+                <h1>
+                    Welcome to the about page
+                </h1>
+            </div>
         );
     }
 }
