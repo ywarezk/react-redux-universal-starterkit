@@ -25,5 +25,6 @@
   "parser": "babel-eslint",
   "globals": {
     "__CLIENT__": true,
+    "__DEVELOPMENT__": true,
   }
 }

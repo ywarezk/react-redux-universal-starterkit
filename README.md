@@ -12,3 +12,31 @@ clone and then
 ```
 npm install
 ```
+
+## What's included
+
+This starter kit include the following packages:
+
+- Universal App, Isomorphic App, Server Side Rendering (or whatever name you call it)
+- React
+- Redux
+- Karma
+- Mocha
+- Enzyme
+- React-Helmet
+- Webpack
+- ES6
+- Lint
+
+## commands
+
+- will run the development environment, open your browser at port 3000
+
+```
+npm start
+```
+
+- will run the tests
+```
+npm run test
+```

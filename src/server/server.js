@@ -43,6 +43,11 @@ app.use('/assets', Express.static(path.join(rootDir, 'dist')));
  * server side
  */
 app.use((req, res) => {
+    if (__DEVELOPMENT__) {
+        // Do not cache webpack stats: the script file would change since
+        // hot module replacement is enabled in the development env
+        webpackIsomorphicTools.refresh();
+    }
 
     const memoryHistory = createHistory(req.originalUrl);
     const store = nzCreateStore(memoryHistory);

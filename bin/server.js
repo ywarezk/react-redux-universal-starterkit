@@ -14,6 +14,7 @@ var rootDir = path.resolve(__dirname, '..');
 
 //init global variables
 global.__CLIENT__ = false;
+global.__DEVELOPMENT__ = process.env.NODE_ENV !== "production";
 
 // start the server
 var WebpackIsomorphicTools = require('webpack-isomorphic-tools');
