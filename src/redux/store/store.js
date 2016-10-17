@@ -9,12 +9,13 @@
 
 import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
+import thunk from 'redux-thunk';
 import reducer from '../reducers/reducers';
 
 
 export default function nzCreateStore(history) {
     const reduxRouterMiddleware = routerMiddleware(history);
-    const middleware = [reduxRouterMiddleware];
+    const middleware = [reduxRouterMiddleware, thunk];
     const finalCreateStore = compose(
         applyMiddleware(...middleware)
     )(createStore);

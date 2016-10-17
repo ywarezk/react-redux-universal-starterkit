@@ -11,17 +11,19 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { mount } from 'enzyme';
 import { expect } from 'chai';
-import { createStore } from 'redux';
-import todoReducer from '../../redux/reducers/todo';
+import sinon from 'sinon';
 import TodoList from './TodoList';
+import superagent from 'superagent';
 import { addTodo } from '../../redux/actions/todo';
+import nzCreateStore from '../../redux/store/store';
 
 describe('TodoList', () => {
     let _todoListComponent;
     let _store;
+    let _nock;
 
     beforeEach(() => {
-        _store = createStore(todoReducer);
+        _store = nzCreateStore();
         _todoListComponent = mount(
             <Provider store={_store}>
                 <TodoList />
@@ -35,10 +37,27 @@ describe('TodoList', () => {
     });
 
     it('should add an item to the list when a todo is added', () => {
-        expect(_store.getState().todos).to.have.length(0);
+        expect(_store.getState().todoReducer.todos).to.have.length(0);
         expect(_todoListComponent.find('li')).to.have.length(0);
-        _store.dispatch(addTodo('test todo'));
-        expect(_store.getState().todos).to.have.length(1);
+        _store.dispatch(addTodo({title: 'test todo'}));
+        expect(_store.getState().todoReducer.todos).to.have.length(1);
         expect(_todoListComponent.find('li')).to.have.length(1);
     });
+
+    it('should call the server to grab the todos', () => {
+        expect(_store.getState().todoReducer.todos).to.have.length(0);
+        const mockResponse = {
+            body: [{title: 'test todo'}]
+        }
+        sinon.stub(superagent.Request.prototype, 'end', () => {
+            debugger;
+            cb(null, mockResponse);
+        });
+        mount(
+            <Provider store={_store}>
+                <TodoList />
+            </Provider>
+        );
+        expect(_store.getState().todoReducer.todos).to.have.length(1);
+    })
 });

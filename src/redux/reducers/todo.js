@@ -7,7 +7,7 @@
  * @copyright: Nerdeez Ltd
  */
 
-import { ADD_TODO } from '../actions/todo';
+import { ADD_TODO, SET_TODO_LIST } from '../actions/todo';
 
 
 const initialState = {
@@ -21,6 +21,10 @@ export default function todoReducer(state = initialState, action) {
             newArray.push(action.payload);
             return Object.assign({}, state, {
                 todos: newArray,
+            });
+        case SET_TODO_LIST:
+            return Object.assign({}, state, {
+                todos: action.payload,
             });
         default:
             return state;

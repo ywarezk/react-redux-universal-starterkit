@@ -9,15 +9,28 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
+import { getTodoList } from '../../redux/actions/todo';
 
 @connect(
     state => ({
         todos: state.todoReducer.todos,
+    }),
+    dispatch => ({
+        getTodoList: () => dispatch(getTodoList()),
     })
 )
 export default class TodoList extends React.Component {
     static propTypes = {
         todos: React.PropTypes.array.isRequired,
+        getTodoList: React.PropTypes.func.isRequired,
+    }
+
+    /**
+     * after component mounts get from the
+     * server the list of todos
+     */
+    componentDidMount() {
+        this.props.getTodoList();
     }
 
     render() {
@@ -29,7 +42,7 @@ export default class TodoList extends React.Component {
                     {
                         todos.map((item) => {
                             counter += 1;
-                            return (<li key={counter}>{item}</li>);
+                            return (<li key={counter}>{item.title}</li>);
                         })
                     }
                 </ul>
