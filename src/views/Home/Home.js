@@ -11,6 +11,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import TodoList from '../../components/TodoList/TodoList';
 import TodoForm from '../../components/TodoForm/TodoForm';
+import SearchList from '../../components/SearchList/SearchList';
 
 export default class Home extends React.Component {
     render() {
@@ -21,6 +22,7 @@ export default class Home extends React.Component {
                 />
                 <h1>Welcome to the homepage</h1>
                 <TodoForm />
+                <SearchList />
                 <TodoList />
             </div>
         );

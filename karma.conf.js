@@ -37,6 +37,12 @@ module.exports = function(config) {
                     { test: /\.json$/, loader: 'json-loader' },
                 ]
             }
+        },
+
+        client: {
+          chai: {
+            includeStack: true
+          }
         }
     });
 }

@@ -7,10 +7,10 @@
  * @copyright: Nerdeez Ltd
  */
 
-import superagent from 'superagent';
-
 export const ADD_TODO = 'ADD_TODO';
 export const SET_TODO_LIST = 'SET_TODO_LIST';
+export const GET_TODO_LIST = 'GET_TODO_LIST';
+export const SEARCH_TODO = 'SEARCH_TODO';
 
 /**
  * add todo to the state array of todos
@@ -37,14 +37,21 @@ export function setTodos(todos) {
 }
 
 /**
- * gets the full todo list tasks from the server
+ * gets the full todo list tasks
+ * the call to the server will be in the epic
  */
 export function getTodoList() {
-    return (dispatch) => {
-        superagent
-            .get('https://nztodo.herokuapp.com/api/task/?format=json')
-            .end((err, res) => {
-                dispatch(setTodos(res.body));
-            });
+    return { type: GET_TODO_LIST };
+}
+
+/**
+ * will start the search in our task list
+ * @param {String} search
+ * @returns {{type: string, payload: *}}
+ */
+export function searchTodoList(search) {
+    return {
+        type: SEARCH_TODO,
+        payload: search,
     };
 }
