@@ -9,17 +9,17 @@
 
 import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
-import { createEpicMiddleware, combineEpics } from 'redux-observable';
+import { createEpicMiddleware } from 'redux-observable';
 import thunk from 'redux-thunk';
 import reducer from '../reducers/reducers';
-import { getAllTasks, searchTasks } from '../epics/todo';
+import todoEpic from '../epics/todo';
 
 export default function nzCreateStore(history) {
     const reduxRouterMiddleware = routerMiddleware(history);
     const middleware = [
         reduxRouterMiddleware,
         thunk,
-        createEpicMiddleware(combineEpics(getAllTasks, searchTasks)),
+        createEpicMiddleware(todoEpic),
     ];
     const finalCreateStore = compose(
         applyMiddleware(...middleware)

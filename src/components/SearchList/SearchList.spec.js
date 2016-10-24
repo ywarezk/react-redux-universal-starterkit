@@ -84,8 +84,41 @@ describe('SearchList', function() {
         _searchList.find('input').node.value = 'test2';
         _searchList.find('input').simulate('change');
         setTimeout(() => {
+            debugger;
             expect(spy.calledOnce).to.equal(true);
             done();
+        }, 2100);
+    });
+
+    it('Should not send request if same value is set', function(done) {
+        this.timeout(5000);
+        let spy = _sandbox.spy();
+
+        // mock the get
+        _sandbox.stub(ajax, 'get', (url) => {
+            spy();
+            return Rx.Observable.create((observer) => {
+                observer.next({
+                    response: [
+                        {title: 'mock1'},
+                        {title: 'mock2'},
+                    ]
+                });
+            });
+        });
+
+        _searchList.find('input').node.value = 'test';
+        _searchList.find('input').simulate('change');
+        setTimeout(() => {
+
+            _searchList.find('input').node.value = 'test1';
+            _searchList.find('input').simulate('change');
+            _searchList.find('input').node.value = 'test';
+            _searchList.find('input').simulate('change');
+            setTimeout(() => {
+                expect(spy.calledOnce).to.equal(true);
+                done();
+            }, 2100);
         }, 2100);
     });
 
