@@ -37,7 +37,7 @@ export default function nzCreateStore(history) {
             applyMiddleware(...middleware)
         )(createStore);
     }
-    if (typeof __CLIENT__ === 'undefined') {
+    if (__CLIENT__) {
         return finalCreateStore(
             reducer,
             window.__initialState

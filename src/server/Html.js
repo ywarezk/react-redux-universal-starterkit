@@ -21,6 +21,10 @@ export default class Html extends React.Component{
     render() {
         const {component, assets, store} = this.props;
         const head = Helmet.rewind();
+        const globals = `
+            window.__DEVELOPMENT__=${global.__DEVELOPMENT__};
+            window.__CLIENT__=${global.__CLIENT__};
+        `;
         return (
             <html lang="en-us">
                 <head>
@@ -28,7 +32,7 @@ export default class Html extends React.Component{
                     {head.meta.toComponent()}
                 </head>
                 <body>
-                    <script dangerouslySetInnerHTML={{__html: `window.__initialState=${serialize(store.getState())};`}} charSet="UTF-8"/>
+                    <script dangerouslySetInnerHTML={{__html: `window.__initialState=${serialize(store.getState())};${globals}`}} charSet="UTF-8"/>
                     <div id="nz-content" dangerouslySetInnerHTML={{__html: component}}>
                     </div>
                     <script src={assets.javascript.main} charSet="UTF-8"/>

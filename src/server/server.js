@@ -61,8 +61,6 @@ app.use((req, res) => {
         },
         (error, redirectLocation, renderProps) => {
 
-
-
             // if the route has a redirect
             if (redirectLocation) {
                 res.redirect(redirectLocation.pathname + redirectLocation.search);
