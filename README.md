@@ -27,6 +27,7 @@ This starter kit include the following packages:
 - Webpack
 - ES6
 - Lint
+- redux-observable
 
 ## commands
 
