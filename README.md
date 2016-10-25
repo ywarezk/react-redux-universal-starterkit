@@ -28,6 +28,7 @@ This starter kit include the following packages:
 - ES6
 - Lint
 - redux-observable
+- redux-devtools
 
 ## commands
 
