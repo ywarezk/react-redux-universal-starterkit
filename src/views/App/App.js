@@ -11,15 +11,46 @@
 import React, { PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import DevTools from '../../components/DevTools/DevTools';
+import * as devToolsActions from '../../redux/actions/devtools';
 
+@connect(
+    state => ({
+        isShowDevTools: state.devtoolsReducer.isShowDevTools,
+    }),
+    dispatch => bindActionCreators(devToolsActions, dispatch)
+)
 export default class App extends React.Component {
     static propTypes = {
         children: PropTypes.object.isRequired,
+        isShowDevTools: PropTypes.bool.isRequired,
+        toggleDevtools: PropTypes.func.isRequired,
+    }
+
+    /**
+     * should render dev tools on the client only
+     */
+    componentDidMount() {
+        if (__DEVELOPMENT__ && !this.props.isShowDevTools) {
+            this.props.toggleDevtools(true);
+        }
     }
 
     render() {
         return (
             <div>
+
+                {/* Show dev tools if needed */}
+                {
+                    (() => {
+                        if (this.props.isShowDevTools) {
+                            return (<DevTools />);
+                        }
+                        return null;
+                    })()
+                }
 
                 {/* begin head configuration */}
                 <Helmet

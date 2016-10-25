@@ -23,7 +23,7 @@ export default class Html extends React.Component{
         const head = Helmet.rewind();
         const globals = `
             window.__DEVELOPMENT__=${global.__DEVELOPMENT__};
-            window.__CLIENT__=${global.__CLIENT__};
+            window.__CLIENT__= true;
         `;
         return (
             <html lang="en-us">

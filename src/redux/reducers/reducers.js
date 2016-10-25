@@ -10,8 +10,10 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import todoReducer from './todo';
+import devtoolsReducer from './devtools';
 
 export default combineReducers({
+    devtoolsReducer,
     todoReducer,
     routing: routerReducer,
 });
