@@ -11,7 +11,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import serialize from 'serialize-javascript';
 
-export default class Html extends React.Component{
+export default class Html extends React.Component {
     static propTypes = {
         component: React.PropTypes.string,
         store: React.PropTypes.object,
@@ -19,25 +19,25 @@ export default class Html extends React.Component{
     }
 
     render() {
-        const {component, assets, store} = this.props;
+        const { component, store, assets } = this.props;
         const head = Helmet.rewind();
         const globals = `
             window.__DEVELOPMENT__=${global.__DEVELOPMENT__};
             window.__CLIENT__= true;
         `;
         return (
-            <html lang="en-us">
+            <html lang="en">
                 <head>
                     {head.title.toComponent()}
                     {head.meta.toComponent()}
+                    <link type="text/css" rel="stylesheet" href={assets.app.css} />
                 </head>
                 <body>
-                    <script dangerouslySetInnerHTML={{__html: `window.__initialState=${serialize(store.getState())};${globals}`}} charSet="UTF-8"/>
-                    <div id="nz-content" dangerouslySetInnerHTML={{__html: component}}>
-                    </div>
-                    <script src={assets.javascript.main} charSet="UTF-8"/>
+                    <script dangerouslySetInnerHTML={{ __html: `window.__initialState=${serialize(store.getState())};${globals}` }} charSet="UTF-8" />
+                    <div id="nz-content" dangerouslySetInnerHTML={{ __html: component }} />
+                    <script src={assets.app.js} />
                 </body>
             </html>
-        )
+        );
     }
 }

@@ -1,7 +1,1 @@
-{
-  "javascript": {
-    "main": "assets/main-740133edf5a16ab31624.js"
-  },
-  "styles": {},
-  "assets": {}
-}
+{"main":{"js":"assets/server.js"},"app":{"js":"http://localhost:3000/assets/app.0bd886311bd89f1db311.js"}}
