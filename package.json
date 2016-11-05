@@ -5,11 +5,12 @@
   "main": "bin/server.js",
   "scripts": {
     "test": "karma start",
-    "start": "concurrently --kill-others \"better-npm-run build-dev\" \"better-npm-run start-dev\""
+    "start": "concurrently --kill-others \"better-npm-run build-dev\" \"better-npm-run start-dev\"",
+    "launch": "webpack -p && node dist/server/server.js"
   },
   "betterScripts": {
     "start-dev": {
-      "command": "node ./bin/server.js",
+      "command": "node ./dist/server/server.js",
       "env": {
         "NODE_ENV": "development"
       }

@@ -25,13 +25,13 @@ export default function nzCreateStore(history) {
         createEpicMiddleware(combineEpics(getAllTasks, searchTasks)),
     ];
     let finalCreateStore;
-    if (__DEVELOPMENT__ && __CLIENT__) {
+    if (typeof __DEVELOPMENT__ !== 'undefined' && typeof __CLIENT__ !== 'undefined' && __DEVELOPMENT__ && __CLIENT__) {
         finalCreateStore = compose(
             applyMiddleware(...middleware),
             window.devToolsExtension ? window.devToolsExtension() : DevTools.instrument(),
             persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
         )(createStore);
-    } else if (__CLIENT__) {
+    } else if (typeof __CLIENT__ !== 'undefined' && __CLIENT__) {
         return finalCreateStore(
             reducer,
             window.__initialState
