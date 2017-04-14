@@ -55,23 +55,21 @@ export default class App extends React.Component {
                 {/* begin head configuration */}
                 <Helmet
                   titleTemplate="Nerdeez Starter Kit | %s"
-                  meta={
-                      [
-                          {
-                              name: 'description',
-                              content:
-                                `Do it yourself unopinionated starter kit for react redux.
-                                The starter kit contains the following:
-                                * Server Side Rendering - Universal app
-                                * Karma
-                                * Mocha
-                                * Enzyme
-                                * Chai
-                                * React-Helmet
-                                * React-Router`,
-                          },
-                      ]
-                  }
+                  meta={[
+                      {
+                          name: 'description',
+                          content:
+                            `Do it yourself unopinionated starter kit for react redux.
+                            The starter kit contains the following:
+                            * Server Side Rendering - Universal app
+                            * Karma
+                            * Mocha
+                            * Enzyme
+                            * Chai
+                            * React-Helmet
+                            * React-Router`,
+                      },
+                  ]}
                 />
                 {/* end head configuration */}
 

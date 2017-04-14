@@ -10,7 +10,7 @@
   },
   "betterScripts": {
     "start-dev": {
-      "command": "node ./dist/server/server.js",
+      "command": "bash ./scripts/start-server.sh",
       "env": {
         "NODE_ENV": "development"
       }
